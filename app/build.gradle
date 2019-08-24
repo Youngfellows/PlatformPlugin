@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+
+//引入自定义插件类
+apply plugin: 'com.pandora.flavors.plugin'
+
+//引入多渠道配置文件
+apply from: 'flavors.gradle'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.pandora.channel"
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    /**
+     * 多渠道打包配置
+     */
+//    flavorDimensions 'pandora'
+//    productFlavors {
+//        google {
+//            dimension = 'pandora'
+//            minSdkVersion 15
+//            applicationId = 'com.pandora.google'
+//            manifestPlaceholders = [CHANNEL: 'google']
+//        }
+//
+//        xiaomi {
+//            dimension = 'pandora'
+//            minSdkVersion 15
+//            applicationId = 'com.pandora.xiaomi'
+//            manifestPlaceholders = [CHANNEL: 'xiaomi']
+//        }
+//
+//        wandoujia {
+//            dimension = 'pandora'
+//            minSdkVersion 15
+//            applicationId = 'com.pandora.wandoujia'
+//            manifestPlaceholders = [CHANNEL: 'wandoujia']
+//        }
+//
+//        huawei {
+//            dimension = 'pandora'
+//            minSdkVersion 15
+//            applicationId = 'com.pandora.huawei'
+//            manifestPlaceholders = [CHANNEL: 'huawei']
+//        }
+//
+//        oppo {
+//            dimension = 'pandora'
+//            minSdkVersion 15
+//            applicationId = 'com.pandora.oppo'
+//            manifestPlaceholders = [CHANNEL: 'oppo']
+//        }
+//    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+/**
+ * 扩展属性--向插件传递参数
+ */
+platform {
+    //资源路径
+    resourceDir 'defindpic'
+
+    //应用名称--拷贝资源存放路径
+    appName 'app'
+}
+

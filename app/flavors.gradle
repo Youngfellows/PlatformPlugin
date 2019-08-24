@@ -1,0 +1,52 @@
+/**
+ * 配置多渠道信息
+ */
+
+def flavorNames = ["google",
+                   "apple",
+                   "xiaomi",
+                   "huawei",
+                   "wandoujia",
+                   "oppo"]
+
+/**
+ * 渠道包名
+ */
+def applicationIds = ["com.pandora.google",
+                      "com.pandora.apple",
+                      "com.pandora.xiaomi",
+                      "com.pandora.huawei",
+                      "com.pandora.wandoujia",
+                      "com.pandora.oppo"]
+
+/**
+ * 应用名称
+ */
+def appNames = ["google",
+                "apple",
+                "xiaomi",
+                "huawei",
+                "wandoujia",
+                "oppo"]
+
+/**
+ * 多渠道配置
+ */
+android {
+    flavorDimensions "pandora"
+    productFlavors {
+        println 0 + ' ===== ' + 0.class
+        0.upto(flavorNames.size() - 1) { index ->
+            def flavor = flavorNames.get(index)
+            //配置渠道信息
+            "$flavor" {
+                dimension "pandora"
+                //应用包名
+                applicationId applicationIds.get(index)
+
+                //渠道号
+                manifestPlaceholders.put("CHANNEL", appNames.get(index))
+            }
+        }
+    }
+}
